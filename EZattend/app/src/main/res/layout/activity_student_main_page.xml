@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_admin_main"
+    tools:context=".AdminMainPage">
+
+    <TextView
+        android:id="@+id/tv_admin_control_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Welcome Students"
+        android:textColor="#C0E0FF"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_teachers"
+        android:layout_width="198dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/rounded_button_main"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical|start"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="REPORT ATTENDANCE"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_school" />
+
+    <Button
+        android:id="@+id/btn_teachers2"
+        android:layout_width="198dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/rounded_button_main"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical|start"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="CHECK MARKS"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_teachers" />
+
+    <Button
+        android:id="@+id/btn_school"
+        android:layout_width="206dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/rounded_button_main"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical|start"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="CHECK ATTENDANCE"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.282"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_admin_control_room" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
