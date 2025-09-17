@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567492365319",
+    "project_id": "ezattendhacktics",
+    "storage_bucket": "ezattendhacktics.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567492365319:android:b81e57daf3d0a018a1eea2",
+        "android_client_info": {
+          "package_name": "com.example.ezattend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBred4X_qwNDJWP9sD86SN8ia8y_cd4GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

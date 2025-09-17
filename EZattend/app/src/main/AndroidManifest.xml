@@ -22,6 +22,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".NewTeacherLogin"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Teacher_Main_Page"
             android:exported="true">
             <intent-filter>

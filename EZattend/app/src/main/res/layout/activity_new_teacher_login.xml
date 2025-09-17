@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_add_teacher"
+    tools:context=".NewTeacherLogin">
+
+    <View
+        android:id="@+id/white_card_background"
+        android:layout_width="396dp"
+        android:layout_height="603dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/rounded_edittext_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:text="Sign Up"
+        android:textColor="@android:color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/white_card_background"
+        app:layout_constraintTop_toTopOf="@+id/white_card_background" />
+
+    <EditText
+        android:id="@+id/new_tech_username"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="40dp"
+        android:hint="Username"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@drawable/rounded_edittext_background"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sign_up"
+        app:layout_constraintStart_toStartOf="@+id/white_card_background"
+        app:layout_constraintEnd_toEndOf="@+id/white_card_background"
+        android:drawableStart="@drawable/ic_username"
+        android:drawablePadding="10dp"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/new_tech_id"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_edittext_background"
+        android:drawableStart="@drawable/ic_username"
+        android:drawablePadding="10dp"
+        android:hint="user id"
+        android:inputType="textEmailAddress"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="@+id/white_card_background"
+        app:layout_constraintStart_toStartOf="@+id/white_card_background"
+        app:layout_constraintTop_toBottomOf="@+id/new_tech_username" />
+
+    <EditText
+        android:id="@+id/new_tech_pass"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@drawable/rounded_edittext_background"
+        app:layout_constraintTop_toBottomOf="@+id/new_tech_id"
+        app:layout_constraintStart_toStartOf="@+id/white_card_background"
+        app:layout_constraintEnd_toEndOf="@+id/white_card_background"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"
+        android:singleLine="true"/>
+
+    <Button
+        android:id="@+id/btn_new_tech_signup"
+        android:layout_width="331dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_button_background"
+        android:gravity="center_vertical|start"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Sign Up"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/white_card_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/white_card_background"
+        app:layout_constraintTop_toBottomOf="@+id/new_tech_pass" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
