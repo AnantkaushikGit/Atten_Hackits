@@ -41,7 +41,7 @@ public class StudentLoginPage extends AppCompatActivity {
 
                 if (password.isEmpty()) {
                     Toast.makeText(StudentLoginPage.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
-                } else if (studentId.equals("@anant") && password.equals("anant1234")) {
+                } else if (studentId.equals("@student") && password.equals("student1234")) {
                     Intent intent = new Intent(StudentLoginPage.this, StudentMainPage.class);
                     startActivity(intent);
                     finish(); // Close the login page so the user can't go back to it
