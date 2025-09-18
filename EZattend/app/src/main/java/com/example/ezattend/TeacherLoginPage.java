@@ -8,22 +8,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class TeacherLoginPage extends AppCompatActivity {
 
-    private EditText id_tech, pass_tech;
-    private Button tec_Login_Btn;
-    private TextView pass_forgot;
+    EditText id_tech, pass_tech;
+    Button tec_Login_Btn;
+    TextView pass_forgot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_teacher_login_page);
 
         // Initialize views
@@ -32,21 +35,13 @@ public class TeacherLoginPage extends AppCompatActivity {
         tec_Login_Btn = findViewById(R.id.tec_Login_Btn);
         pass_forgot = findViewById(R.id.pass_forgot);
 
-        // Set up login button click listener
         tec_Login_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String teacherId = id_tech.getText().toString().trim();
-                String password = pass_tech.getText().toString().trim();
-
-                if (password.isEmpty()) {
-                    Toast.makeText(TeacherLoginPage.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
-                } else if (teacherId.equals("@teacher") && password.equals("teacher1234")) {
-                    Intent intent = new Intent(TeacherLoginPage.this, Teacher_Main_Page.class);
-                    startActivity(intent);
-                    finish(); // Close the login page
+            public void onClick(View view) {
+                if (!validateUsername() || !validatePassword()) {
+                    return;
                 } else {
-                    Toast.makeText(TeacherLoginPage.this, "Invalid ID or Password", Toast.LENGTH_SHORT).show();
+                    checkUser();
                 }
             }
         });
@@ -58,11 +53,67 @@ public class TeacherLoginPage extends AppCompatActivity {
                 Toast.makeText(TeacherLoginPage.this, "Work under progress", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+    public Boolean validateUsername() {
+        String val = id_tech.getText().toString().trim();
+        if (val.isEmpty()) {
+            id_tech.setError("Username cannot be empty");
+            return false;
+        } else {
+            id_tech.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validatePassword() {
+        String val = pass_tech.getText().toString().trim();
+        if (val.isEmpty()) {
+            pass_tech.setError("Password cannot be empty");
+            return false;
+        } else {
+            pass_tech.setError(null);
+            return true;
+        }
+    }
+
+    public void checkUser() {
+        String teacherUsername = id_tech.getText().toString().trim();
+        String teacherPassword = pass_tech.getText().toString().trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("teacher");
+
+        // Fix 1: The query should use "userID" to match the database key
+        Query checkUserDatabase = reference.orderByChild("userID").equalTo(teacherUsername);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                        // Fix 2: Get the password using the correct database key "password"
+                        String passwordFromDB = userSnapshot.child("password").getValue(String.class);
+
+                        if (passwordFromDB != null && passwordFromDB.equals(teacherPassword)) {
+                            id_tech.setError(null);
+                            Intent intent = new Intent(TeacherLoginPage.this, Teacher_Main_Page.class);
+                            startActivity(intent);
+                            finish();
+                            return;
+                        }
+                    }
+                    pass_tech.setError("Invalid password");
+                    pass_tech.requestFocus();
+                } else {
+                    id_tech.setError("User does not exist");
+                    id_tech.requestFocus();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(TeacherLoginPage.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
